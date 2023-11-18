@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022780781076",
+    "project_id": "classcritique-90e9d",
+    "storage_bucket": "classcritique-90e9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022780781076:android:997dc159e8e54e3b97ad01",
+        "android_client_info": {
+          "package_name": "com.mellow.org.classcritique"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022780781076-q4o8el63b1a9uvth15gv0n942tqvmmka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOaDVkcFdhA96quNEOnxjeKVm85B4VRMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022780781076-q4o8el63b1a9uvth15gv0n942tqvmmka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
