@@ -146,8 +146,9 @@ class _registeredState extends State<registered> {
                       QuerySnapshot querySnapshot = await FirebaseFirestore
                           .instance
                           .collection('levels')
-                          .where('semester', isEqualTo: '$semesterAsInteger')
-                          .where('year', isEqualTo: '$yearAsInteger')
+                          .where('semester',
+                              isEqualTo: semesterAsInteger.toString())
+                          .where('year', isEqualTo: yearAsInteger.toString())
                           .limit(1)
                           .get();
 
