@@ -10,8 +10,8 @@ class registered extends StatefulWidget {
 }
 
 class _registeredState extends State<registered> {
-  String? _selectedYear;
-  String? _selectedSemester;
+  String _selectedYear = 'First Year';
+  String _selectedSemester = 'First Semester';
 
   final List<String> _years = [
     'First Year',
@@ -50,6 +50,10 @@ class _registeredState extends State<registered> {
               ),
               SizedBox(height: 10),
               Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFBDBDBD),
+                  borderRadius: BorderRadius.circular(13),
+                ),
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: DropdownButtonHideUnderline(
@@ -64,16 +68,12 @@ class _registeredState extends State<registered> {
                       fontFamily: 'Poppins',
                     ),
                     onChanged: (String? newValue) {
-                      // if (newValue != null && newValue.isNotEmpty) {
-                      _selectedYear = newValue;
-                      // }
+                      if (newValue != null && newValue.isNotEmpty) {
+                        _selectedYear = newValue;
+                        setState(() {});
+                      }
                     },
-                    items: [
-                      'First Year',
-                      'Second Year',
-                      'Third Year',
-                      'Fourth Year'
-                    ].toSet().map<DropdownMenuItem<String>>((String value) {
+                    items: _years.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -93,6 +93,10 @@ class _registeredState extends State<registered> {
               ),
               SizedBox(height: 10),
               Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFBDBDBD),
+                  borderRadius: BorderRadius.circular(13),
+                ),
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: DropdownButtonHideUnderline(
@@ -107,11 +111,12 @@ class _registeredState extends State<registered> {
                       fontFamily: 'Poppins',
                     ),
                     onChanged: (String? newValue) {
-                      // if (newValue != null && newValue.isNotEmpty) {
-                      // }
-                      _selectedSemester = newValue;
+                      if (newValue != null && newValue.isNotEmpty) {
+                        _selectedSemester = newValue;
+                        setState(() {});
+                      }
                     },
-                    items: ['First Semester', 'Second Semester']
+                    items: _semesters
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -135,19 +140,20 @@ class _registeredState extends State<registered> {
 
                     try {
                       // Query the 'levels' collection to find matching semester and year
-                      final yearAsInteger = _years.indexOf(_selectedYear!) + 1;
+                      final yearAsInteger = _years.indexOf(_selectedYear) + 1;
                       final semesterAsInteger =
-                          _semesters.indexOf(_selectedSemester!) + 1;
+                          _semesters.indexOf(_selectedSemester) + 1;
 
                       QuerySnapshot querySnapshot = await FirebaseFirestore
                           .instance
                           .collection('levels')
-                          .where('semester', isEqualTo: '$semesterAsInteger')
-                          .where('year', isEqualTo: '$yearAsInteger')
+                          .where('semester',
+                              isEqualTo: semesterAsInteger.toString())
+                          .where('year', isEqualTo: yearAsInteger.toString())
                           .limit(1)
                           .get();
 
-                      print(querySnapshot.docs.first);
+                      // print(querySnapshot.docs.first);
                       // Check if any documents were found
                       if (querySnapshot.docs.isNotEmpty) {
                         // Get the ID of the first matching document
