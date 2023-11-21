@@ -71,6 +71,7 @@ class _LoggedInState extends State<LoggedIn> {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10.0),
+                  //fr?
                 ),
                 padding: EdgeInsets.all(32.0),
                 child: Column(

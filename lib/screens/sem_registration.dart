@@ -1,3 +1,4 @@
+import 'package:classcritique/screens/loggedIn.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -159,7 +160,9 @@ class _registeredState extends State<registered> {
                             .update({'levels_id': levelsID});
 
                         // Navigate to the LoggedIn page
-                        Get.to(() => LoggedIn());
+                        Get.to(() => LoggedIn(
+                              user: user,
+                            ));
                       } else {
                         print('No matching documents found');
                         // Handle error or show a message
@@ -189,20 +192,6 @@ class _registeredState extends State<registered> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class LoggedIn extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Logged In'),
-      ),
-      body: Center(
-        child: Text('You are now logged in!'),
       ),
     );
   }
